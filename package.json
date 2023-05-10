@@ -2,8 +2,11 @@
   "name": "dishes-form",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://huanamigo.github.io/dishes-form",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -11,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.62.1"
