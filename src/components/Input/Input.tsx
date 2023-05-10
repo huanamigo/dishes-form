@@ -3,36 +3,60 @@ import React from 'react';
 interface IProps {
   label: string;
   name: string;
-  handleTypeChange: (
+  handleTypeChange?: (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
-  value: string;
+  handleInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
   pattern?: string;
   placeholder: string;
+  validation: string | undefined;
+  max?: number;
+  type: string;
+  step?: number;
+  touched?: boolean;
 }
 
 const Input = ({
   label,
   name,
   handleTypeChange,
+  handleInputChange,
   value,
   pattern = undefined,
   placeholder,
+  validation,
+  type,
+  max,
+  step,
+  touched,
 }: IProps) => {
+  const paragraphStyle = { height: 'initial', opacity: '1' };
+  const borderStyleError = { borderBottom: '2px solid red' };
+  const borderStyleNormal = { borderBottom: '2px solid gray' };
+
   return (
     <div>
       <label htmlFor={name}>{label}</label>
       <br />
       <input
-        type="text"
+        type={type}
         id={name}
         name={name}
         value={value}
-        onChange={handleTypeChange}
+        onChange={handleTypeChange || handleInputChange}
         pattern={pattern}
-        required
         placeholder={placeholder}
+        min={1}
+        step={step}
+        max={max}
+        style={
+          validation !== '' && touched ? borderStyleError : borderStyleNormal
+        }
       />
+      <p style={validation !== '' && touched ? paragraphStyle : undefined}>
+        {touched ? validation : null}
+      </p>
     </div>
   );
 };

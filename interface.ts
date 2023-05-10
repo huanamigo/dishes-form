@@ -11,5 +11,19 @@ export interface DishFormState {
 }
 
 export interface ValidationErrors {
-  [key: string]: string;
+  name: string;
+  preparation_time: string;
+  no_of_slices?: string;
+  diameter?: string;
+  spiciness_scale?: string;
+  slices_of_bread?: string;
+}
+
+export interface Touch {
+  name: boolean;
+  preparation_time: boolean;
+  no_of_slices?: boolean;
+  diameter?: boolean;
+  spiciness_scale?: boolean;
+  slices_of_bread?: boolean;
 }
